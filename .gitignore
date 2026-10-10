@@ -12,5 +12,6 @@
 /*.pkg.tar.*
 /*.deb
 __pycache__
+/*.rpm
 
 owl-test-*
