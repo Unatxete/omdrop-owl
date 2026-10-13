@@ -60,7 +60,7 @@ cat > "$TOP/SPECS/$PKG.spec" <<EOF
 Name: $PKG
 Version: $VERSION
 Release: $RELEASE
-Summary: AirDrop radio backend for omdrop on MediaTek MT7925 Wi-Fi
+Summary: AirDrop radio backend for omdrop on non-Broadcom Wi-Fi
 License: GPL-3.0-or-later AND GPL-2.0-only AND ISC
 URL: https://github.com/t4t5/omdrop-owl
 BuildArch: $ARCH
@@ -73,7 +73,7 @@ Conflicts: brcmfmac-awdl-dkms
 %global _build_id_links none
 
 %description
-AirDrop radio backend for omdrop on MediaTek MT7925 Wi-Fi: AWDL runs in
+AirDrop radio backend for omdrop on non-Broadcom Wi-Fi: AWDL runs in
 userspace through OWL on a monitor interface, so AirDrop works without Apple's
 Broadcom firmware while Wi-Fi stays connected. Installs helpers into
 /usr/lib/omdrop for omdrop's CLI and panel to call.
