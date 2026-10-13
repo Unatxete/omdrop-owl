@@ -39,7 +39,7 @@ unmanaged. It conflicts with `brcmfmac-awdl-dkms`: one radio backend at a time.
 <summary>On Fedora (from source)</summary>
 
 ```sh
-sudo dnf install rpm-build cmake gcc make git libev-devel libpcap-devel libnl3-devel
+sudo dnf install rpm-build cmake gcc gcc-c++ make git libev-devel libpcap-devel libnl3-devel
 tools/build-rpm.sh
 sudo dnf install ./omdrop-owl-*.rpm
 ```
@@ -143,8 +143,8 @@ while the machine is visible and restores it on `stop`.
 
 ## Development
 
-The unit tests (no radio, no root, no network) run with `tools/run-tests.sh` and need [`bats`](https://github.com/bats-core/bats-core).
-
+The unit tests (no radio, no root, no network) run with `tools/run-tests.sh`
+and need [`bats`](https://github.com/bats-core/bats-core).
 
 `just build` assembles the same files in `build/lib`, and `just test` runs the
 card test against them. On Arch, `makepkg -si` (or `just install`) builds and

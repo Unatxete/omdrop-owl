@@ -24,7 +24,7 @@ while [ $# -gt 0 ]; do
     --watch) WATCH=$2; shift 2 ;;
     --file) FILE=$2; shift 2 ;;
     --phone) PHONE=$2; shift 2 ;;
-    *) sed -n '2,15s/^# \{0,1\}//p' "$0"; exit 2 ;;
+    *) sed -n '2,/^set /s/^# \{0,1\}//p' "$0"; exit 2 ;;
   esac
 done
 [ "$(id -u)" = 0 ] || { echo "run as root: sudo $0 $*"; exit 2; }

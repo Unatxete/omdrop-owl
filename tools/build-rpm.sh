@@ -5,7 +5,7 @@
 # throwaway tree, and packs it with rpmbuild. Needs no root or source tarball.
 # (The Requires use Fedora package names; other rpm distros would rename them.)
 #
-#   sudo dnf install rpm-build cmake gcc make git libev-devel libpcap-devel libnl3-devel
+#   sudo dnf install rpm-build cmake gcc gcc-c++ make git libev-devel libpcap-devel libnl3-devel
 #   tools/build-rpm.sh
 #   sudo dnf install ./omdrop-owl-*.rpm
 set -eu

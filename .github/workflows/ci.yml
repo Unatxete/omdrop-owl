@@ -16,14 +16,14 @@ jobs:
       - name: Install bats, shellcheck, libev headers
         run: sudo apt-get update && sudo apt-get install -y bats shellcheck libev-dev
       - name: shellcheck
-        # Only the files this branch owns: test-card.sh and build-deb.sh come
-        # from upstream and aren't held to our shellcheck pass here.
-        # --severity=warning skips info-level notes the upstream helper relies
-        # on intentionally (word-splitting an argument string and a list).
+        # test-card.sh isn't listed: it declares empty variables as `A= B=`
+        # (SC1007). --severity=warning skips info-level notes the helper
+        # relies on intentionally (word-splitting an argument string and a
+        # list).
         run: |
           shellcheck --severity=warning \
             userspace/omdrop-discoverable \
-            tools/build-owl.sh tools/stage.sh tools/build-rpm.sh tools/run-tests.sh \
+            tools/build-owl.sh tools/stage.sh tools/build-rpm.sh tools/build-deb.sh tools/run-tests.sh \
             tests/helpers.bash tests/stubs/*
       - name: Unit tests
         run: tools/run-tests.sh
@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install the build toolchain
-        run: dnf install -y rpm-build rpmlint git gcc cmake make libev-devel libpcap-devel libnl3-devel
+        run: dnf install -y rpm-build rpmlint git gcc gcc-c++ cmake make libev-devel libpcap-devel libnl3-devel
       - name: Build the rpm
         run: tools/build-rpm.sh
       - name: rpmlint (informational)
@@ -48,6 +48,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install the build toolchain
-        run: dnf install -y rpm-build git gcc cmake make libev-devel libpcap-devel libnl3-devel
+        run: dnf install -y rpm-build git gcc gcc-c++ cmake make libev-devel libpcap-devel libnl3-devel
       - name: Build the rpm
         run: tools/build-rpm.sh
