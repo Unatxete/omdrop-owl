@@ -1,3 +1,0 @@
-#!/bin/bash
-# Stand-in for pkill: never signals anything.
-exit 1

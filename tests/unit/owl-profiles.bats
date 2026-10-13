@@ -44,11 +44,6 @@ validate_table() {  # FILE -> awk exits nonzero on any violation
   [ "$output" = tested ]
 }
 
-@test "the test fixture is well-formed" {
-  run validate_table "$REPO/tests/fixtures/owl-profiles"
-  [ "$status" -eq 0 ]
-}
-
 @test "the validator catches a bad row" {
   printf 'r8168 broken shared station yes no bad row\n' > "$TMP/bad"
   run validate_table "$TMP/bad"

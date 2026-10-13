@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install bats, shellcheck, libev headers
-        run: sudo apt-get update && sudo apt-get install -y bats shellcheck libev-dev
+      - name: Install bats and shellcheck
+        run: sudo apt-get update && sudo apt-get install -y bats shellcheck
       - name: shellcheck
         # test-card.sh isn't listed: it declares empty variables as `A= B=`
         # (SC1007). --severity=warning skips info-level notes the helper
@@ -24,7 +24,7 @@ jobs:
           shellcheck --severity=warning \
             userspace/omdrop-discoverable \
             tools/build-owl.sh tools/stage.sh tools/build-rpm.sh tools/build-deb.sh tools/run-tests.sh \
-            tests/helpers.bash tests/stubs/*
+            tests/helpers.bash
       - name: Unit tests
         run: tools/run-tests.sh
 
