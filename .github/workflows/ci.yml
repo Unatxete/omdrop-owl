@@ -4,9 +4,6 @@ on:
   pull_request:
   push:
     branches: [main]
-  schedule:
-    # Weekly rawhide build: red there does not block PRs.
-    - cron: '23 4 * * 1'
 
 jobs:
   test:
@@ -48,15 +45,3 @@ jobs:
           ! grep -q skipped amsdu.log
       - name: rpmlint (informational)
         run: rpmlint omdrop-owl-*.rpm || true
-
-  rpm-rawhide:
-    if: github.event_name == 'schedule'
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    container: fedora:rawhide
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install the build toolchain
-        run: dnf install -y rpm-build git gcc gcc-c++ cmake make libev-devel libpcap-devel libnl3-devel
-      - name: Build the rpm
-        run: tools/build-rpm.sh
