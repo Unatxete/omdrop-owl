@@ -144,7 +144,8 @@ while the machine is visible and restores it on `stop`.
 ## Development
 
 The unit tests (no radio, no root, no network) run with `tools/run-tests.sh`
-and need [`bats`](https://github.com/bats-core/bats-core).
+and need [`bats`](https://github.com/bats-core/bats-core) and Python. The OWL
+A-MSDU test skips until `just build` has patched OWL.
 
 `just build` assembles the same files in `build/lib`, and `just test` runs the
 card test against them. On Arch, `makepkg -si` (or `just install`) builds and
